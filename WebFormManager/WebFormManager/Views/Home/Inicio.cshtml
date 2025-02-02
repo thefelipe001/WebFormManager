@@ -1,0 +1,100 @@
+﻿@model IEnumerable<WebFormManager.Models.FormularioPeliculas>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Películas Guardadas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #141414;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('https://wallpapercave.com/wp/wp7418473.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+            max-width: 800px;
+            width: 100%;
+            border: 3px solid #e50914;
+            margin-top: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #e50914;
+        }
+
+        th {
+            background-color: #e50914;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Listado de Películas Guardadas</h2>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Película</th>
+                    <th>Géneros</th>
+                    <th>Plataformas</th>
+                    <th>Actor Favorito</th>
+                    <th>Fecha Vista</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var pelicula in Model)
+                {
+                    <tr>
+                        <td>@pelicula.PeliculaFavorita</td>
+                        <td>@pelicula.GenerosFavoritos</td>
+                        <td>@pelicula.PlataformasStreaming</td>
+                        <td>@pelicula.ActorFavorito</td>
+                        <td>@pelicula.FechaHoraUltimaPelicula?.ToString("yyyy-MM-dd HH:mm")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+        <div class="button-container">
+            <a class="btn btn-outline-primary" href="/Home/Index">Volver al Formulario</a>
+        </div>
+    </div>
+</body>
+</html>

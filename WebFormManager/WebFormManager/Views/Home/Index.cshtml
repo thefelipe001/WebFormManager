@@ -1,0 +1,195 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Películas - Estilo Netflix</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #141414;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('https://wallpapercave.com/wp/wp7418473.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .form-container {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+            max-width: 600px;
+            width: 100%;
+            border: 3px solid #e50914;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+            .form-header img {
+                width: 150px;
+            }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #e50914;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e50914;
+            border-radius: 8px;
+            background-color: #222;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease-in-out;
+        }
+
+            input:focus, select:focus, textarea:focus {
+                border-color: #ff1e1e;
+                outline: none;
+                background-color: #333;
+            }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+            .checkbox-group label {
+                margin-bottom: 0;
+                display: flex;
+                align-items: center;
+            }
+
+        .form-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+            .form-buttons button {
+                padding: 12px 25px;
+                background-color: #e50914;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 18px;
+                transition: background-color 0.3s;
+            }
+
+                .form-buttons button:hover {
+                    background-color: #b20710;
+                }
+
+        #actor, #genero {
+            width: 628px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <h2>Formulario de Películas</h2>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg" alt="Netflix Logo">
+        </div>
+        <form action="/Home/Data" method="post" onsubmit="procesarPlataformas()">
+            <div class="form-group">
+                <label for="pelicula">Tu película favorita:</label>
+                <input type="text" id="pelicula" name="pelicula" placeholder="Ejemplo: El Padrino, Inception" required>
+            </div>
+            <br />
+
+            <div class="form-group">
+                <label>Géneros favoritos:</label>
+                <select id="genero" name="genero" multiple>
+                    <option value="accion">Acción</option>
+                    <option value="drama">Drama</option>
+                    <option value="comedia">Comedia</option>
+                    <option value="terror">Terror</option>
+                    <option value="ciencia_ficcion">Ciencia Ficción</option>
+                </select>
+            </div>
+            <br />
+
+            <div class="form-group">
+                <label>Plataformas de streaming que usas:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="plataformas" value="netflix"> Netflix</label>
+                    <label><input type="checkbox" name="plataformas" value="disney"> Disney+</label>
+                    <label><input type="checkbox" name="plataformas" value="hbo"> HBO Max</label>
+                    <label><input type="checkbox" name="plataformas" value="amazon"> Amazon Prime</label>
+                    <label><input type="checkbox" name="plataformas" value="apple"> Apple TV+</label>
+                </div>
+            </div>
+
+            <input type="hidden" id="plataformasSeleccionadas" name="plataformasSeleccionadas">
+
+            <script>
+                function procesarPlataformas() {
+                    const checkboxes = document.querySelectorAll("input[name='plataformas']");
+                    const hiddenInput = document.getElementById("plataformasSeleccionadas");
+
+                    const selected = Array.from(checkboxes)
+                        .filter(checkbox => checkbox.checked)
+                        .map(checkbox => checkbox.value)
+                        .join(",");
+
+                    hiddenInput.value = selected;
+                }
+            </script>
+            <br />
+
+            <div class="form-group">
+                <label for="actor">Actor/actriz favorito:</label>
+                <select id="actor" name="actor">
+                    <option value="diCaprio">Leonardo DiCaprio</option>
+                    <option value="streep">Meryl Streep</option>
+                    <option value="deNiro">Robert De Niro</option>
+                    <option value="washington">Denzel Washington</option>
+                    <option value="lawrence">Jennifer Lawrence</option>
+                </select>
+            </div>
+            <br />
+
+            <div class="form-group">
+                <label for="comentario">Describe tu escena favorita:</label>
+                <textarea id="comentario" name="comentario" rows="4" placeholder="Comparte tu opinión..." required></textarea>
+            </div>
+            <br />
+
+            <div class="form-group">
+                <label for="datetime">Fecha y hora de la última película vista:</label>
+                <input type="datetime-local" id="datetime" name="datetime">
+            </div>
+            <div class="form-buttons">
+                <button type="submit">Enviar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
