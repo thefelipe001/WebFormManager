@@ -117,6 +117,7 @@
             <h2>Formulario de Películas</h2>
             <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg" alt="Netflix Logo">
         </div>
+
         <form action="/Home/Data" method="post" onsubmit="procesarPlataformas()">
             <div class="form-group">
                 <label for="pelicula">Tu película favorita:</label>
@@ -126,7 +127,7 @@
 
             <div class="form-group">
                 <label>Géneros favoritos:</label>
-                <select id="genero" name="genero" multiple>
+                <select id="genero" name="genero" multiple required>
                     <option value="accion">Acción</option>
                     <option value="drama">Drama</option>
                     <option value="comedia">Comedia</option>
@@ -146,6 +147,19 @@
                     <label><input type="checkbox" name="plataformas" value="apple"> Apple TV+</label>
                 </div>
             </div>
+
+            <script>
+                document.querySelector("form").addEventListener("submit", function (event) {
+                    const checkboxes = document.querySelectorAll("input[name='plataformas']");
+                    const checked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+                    if (!checked) {
+                        alert("Debes seleccionar al menos una plataforma de streaming.");
+                        event.preventDefault(); // Evita el envío del formulario si no hay selección
+                    }
+                });
+            </script>
+
 
             <input type="hidden" id="plataformasSeleccionadas" name="plataformasSeleccionadas">
 
@@ -184,7 +198,7 @@
 
             <div class="form-group">
                 <label for="datetime">Fecha y hora de la última película vista:</label>
-                <input type="datetime-local" id="datetime" name="datetime">
+                <input type="datetime-local" id="datetime" name="datetime" required>
             </div>
             <div class="form-buttons">
                 <button type="submit">Enviar</button>

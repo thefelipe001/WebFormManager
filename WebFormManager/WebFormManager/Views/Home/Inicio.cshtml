@@ -1,8 +1,4 @@
 ﻿@model IEnumerable<WebFormManager.Models.FormularioPeliculas>
-
-@{
-    ViewData["Title"] = "Index";
-}
 @{
     Layout = null;
 }
@@ -39,6 +35,7 @@
             width: 100%;
             border: 3px solid #e50914;
             margin-top: 20px;
+            text-align: center;
         }
 
         .header {
@@ -61,6 +58,27 @@
             background-color: #e50914;
             color: white;
         }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+            .button-container a, .delete-button {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #e50914;
+                color: white;
+                text-decoration: none;
+                border-radius: 8px;
+                font-size: 16px;
+                transition: background-color 0.3s;
+                cursor: pointer;
+                border: none;
+            }
+
+                .button-container a:hover, .delete-button:hover {
+                    background-color: #b20710;
+                }
     </style>
 </head>
 <body>
@@ -68,6 +86,20 @@
         <div class="header">
             <h2>Listado de Películas Guardadas</h2>
         </div>
+        <!-- Mensajes de error y éxito -->
+        @if (TempData["Error"] != null)
+        {
+            <div style="color: red; background-color: #ffdddd; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+                @TempData["Error"]
+            </div>
+        }
+
+        @if (TempData["Success"] != null)
+        {
+            <div style="color: green; background-color: #ddffdd; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+                @TempData["Success"]
+            </div>
+        }
         <table>
             <thead>
                 <tr>
@@ -76,6 +108,7 @@
                     <th>Plataformas</th>
                     <th>Actor Favorito</th>
                     <th>Fecha Vista</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -87,14 +120,20 @@
                         <td>@pelicula.PlataformasStreaming</td>
                         <td>@pelicula.ActorFavorito</td>
                         <td>@pelicula.FechaHoraUltimaPelicula?.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td>
+                            <form action="/Home/Eliminar" method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="@pelicula.Id" />
+                                <button type="submit" class="delete-button">Eliminar</button>
+                            </form>
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
-        <br />
         <div class="button-container">
-            <a class="btn btn-outline-primary" href="/Home/Index">Volver al Formulario</a>
+            <a href="/Home/Index">Volver al Formulario</a>
         </div>
     </div>
 </body>
 </html>
+

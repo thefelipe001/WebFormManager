@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebFormManager")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+072ccc58ce53206d214f1851182f41abbdd5b583")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2d242b66d5d8a65f4528d0d2ac6329f98b1aede2")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebFormManager")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebFormManager")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
