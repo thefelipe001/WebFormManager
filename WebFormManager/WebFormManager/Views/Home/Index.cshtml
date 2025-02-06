@@ -109,6 +109,17 @@
         #actor, #genero {
             width: 628px;
         }
+
+
+        audio {
+            width: 100%;
+            max-width: 400px;
+            margin: 20px 0;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -198,8 +209,23 @@
 
             <div class="form-group">
                 <label for="datetime">Fecha y hora de la última película vista:</label>
-                <input type="datetime-local" id="datetime" name="datetime" required>
+                <input type="date" id="datetime" name="datetime" required>
             </div>
+            <br />
+
+            <label for="datetime">Trailer</label>
+            <iframe width="605" height="350" src="https://www.youtube.com/embed/YoHD9XEInc0" title="Inception (2010) Official Trailer #1 - Christopher Nolan Movie HD" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <br />
+
+
+            <audio controls>
+                <source src="~/audio/Inception.mp3" type="audio/mpeg">
+                <source src="audio.ogg" type="audio/ogg">
+                Tu navegador no soporta el elemento de audio.
+            </audio>
+            <br />
+
+
             <div class="form-buttons">
                 <button type="submit">Enviar</button>
             </div>
